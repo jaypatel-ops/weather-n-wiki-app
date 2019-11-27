@@ -1,0 +1,44 @@
+    body{
+            background-image: "/background.jpeg";
+            background-size: cover;
+    }
+
+    .content{
+        
+        width: 100%;
+        height: 100%;
+        display: inline-block;
+        text-align: center;
+        
+    }
+
+    #tname{
+        background:transparent;
+        
+    }
+
+    #btn{
+          width: auto;
+          height: auto;
+          border: 1px solid #820f00;
+          background: #820f00;
+          text-align: center;
+          color: #fff;
+          border-radius: 0 5px 5px 0;
+          cursor: pointer;
+          font-size: 20px;
+        
+    }
+
+    #wBtn{
+          width: auto;
+          height: auto;
+          border: 1px solid #820f00;
+          background: #820f00;
+          text-align: center;
+          color: #fff;
+          border-radius: 0 5px 5px 0;
+          cursor: pointer;
+          font-size: 20px;
+        
+    }
