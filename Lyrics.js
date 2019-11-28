@@ -20,7 +20,8 @@ $(document).ready( function() {
             $.get(ly_endpoint + apiKey + "&track_id=" + track_id, function(response){
                 var json2= JSON.parse(response);
              $.each(json2, function(i,v) {
-                 $("body").append(v.body.lyrics.lyrics_body+ "<br>" );  
+                 $("body").append(v.body.lyrics.lyrics_body+ "<br>"); 
+                 
                 });
             });
         });
