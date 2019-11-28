@@ -1,7 +1,7 @@
     body{
-            background-image: "/background.jpeg";
+            background-image: "./background.jpeg";
             background-size: auto;
-            color: white;
+            color: red;
     }
 
     .content{
@@ -18,7 +18,25 @@
         
     }
 
-    #btn{
+    .page1{
+        position:absolute;
+        left:20%;
+        top:35%;
+        width:auto%;
+        background-color:transparent;
+        color:grey;
+    }    
+    
+      .page2{
+        position:absolute;
+        left:20%;
+        top:45%;
+        width:auto%;
+        background-color:transparent;
+        color:grey;
+    }   
+
+/*     #btn{
           width: auto;
           height: auto;
           border: 1px solid #820f00;
@@ -42,4 +60,4 @@
           cursor: pointer;
           font-size: 20px;
         
-    }
+    } */
