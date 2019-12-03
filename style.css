@@ -18,23 +18,30 @@
         
     }
 
-    .page1{
+    .weatherpage{
         position:absolute;
         left:20%;
         top:35%;
         width:auto%;
         background-color:transparent;
-        color:grey;
+        color:blue;
     }    
     
-      .page2{
+      .wikipage{
         position:absolute;
         left:20%;
         top:45%;
         width:auto%;
         background-color:transparent;
-        color:grey;
+        color:black;
     }   
+
+    .card{    
+        text-align:center;
+
+    }
+
+
 
 /*     #btn{
           width: auto;
