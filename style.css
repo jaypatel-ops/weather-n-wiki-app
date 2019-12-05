@@ -1,16 +1,15 @@
     body{
             background-image: "./background.jpeg";
             background-size: auto;
-            color: red;
+            color: white;
     }
 
-    .content{
-        
-        width: 100%;
-        height: 100%;
-        display: inline-block;
-        text-align: center;
-        
+    :root {
+        --mdc-theme-primary: #D50032;
+    }
+
+    .template {
+        display:none;
     }
 
     #tname{
@@ -18,53 +17,73 @@
         
     }
 
-    .weatherpage{
-        position:absolute;
-        left:20%;
-        top:35%;
-        width:auto%;
-        background-color:transparent;
-        color:blue;
-    }    
-    
-      .wikipage{
+    #weatherpage{
         position:absolute;
         left:20%;
         top:45%;
-        width:auto%;
+        background-color:transparent;
+        color:black;
+    }    
+    
+      #wikipage{
+        position:absolute;
+        left:20%;
+        top:75%;
         background-color:transparent;
         color:black;
     }   
+    
+      #forecastpage{
+        position:absolute;
+        left:20%;
+        top:35%;
+        background-color:transparent;
+        color:black;
+    }  
 
-    .card{    
+      #curve_chart {
+/*           margin: 10px; */
+          width: 100% ;
+          height: 100% ;
+
+
+    }    
+    
+    #box {
+        position:absolute;
+    /*         margin:5%; */
+        background: rgba(0, 0, 0, 0.2);
+        height: 20%;
+        width: 100% ;
+        top: 10%;
+        left: auto%;
+        color: #383535;
+        text-align: center;
+    
+    
+    }
+
+
+
+
+/*     .card{    
+        position:absolute;
+        left:60%;
+        top: 60%;
+        height: 250px;
+        width: 250px;
+        transform: translate(-50%, -50%);
         text-align:center;
 
-    }
-
-
-
-/*     #btn{
-          width: auto;
-          height: auto;
-          border: 1px solid #820f00;
-          background: #820f00;
-          text-align: center;
-          color: #fff;
-          border-radius: 0 5px 5px 0;
-          cursor: pointer;
-          font-size: 20px;
-        
-    }
-
-    #wBtn{
-          width: auto;
-          height: auto;
-          border: 1px solid #820f00;
-          background: #820f00;
-          text-align: center;
-          color: #fff;
-          border-radius: 0 5px 5px 0;
-          cursor: pointer;
-          font-size: 20px;
-        
     } */
+
+        .card{
+            position:relative;
+/*             left:0%;
+            top:0%; */
+            padding: 10px;
+            text-align: center;
+            margin: auto;
+            margin-top: 50%;
+            color: black;
+        }

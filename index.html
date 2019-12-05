@@ -7,7 +7,7 @@
    <meta http-equiv="Content-Security-Policy" content="upgrade-insecure-requests"> 
 <!--     <link rel="shortcut icon" href="favicon.ico" type="image/x-icon"> -->
     
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    
     <title>Big Project</title>
     
 <!--  adding JQuery -->
@@ -23,19 +23,28 @@
 <script src="https://stackpath.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js" integrity="sha384-aJ21OjlMXNL5UyIl/XNwTMqvzeRMZH2w8c5cRVpzpU8Y5bApTppSuUkhZXN0VxHd" crossorigin="anonymous"></script>
 
 <link href="style.css" rel="stylesheet" type="text/css" />
-
+    
 <link href="https://unpkg.com/material-components-web@latest/dist/material-components-web.min.css" rel="stylesheet">
-<script src="https://unpkg.com/material-components-web@latest/dist/material-components-web.min.js">
-</script>
+<script src="https://unpkg.com/material-components-web@latest/dist/material-components-web.min.js"></script>
+
 <link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons">    
     
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    
+<!-- for graph -->
+    
+<script type="text/javascript" src="https://www.gstatic.com/charts/loader.js"></script>
+<script src = "graph.js"> </script>
+    
+
 </head>
     
 <!-- ***************************************************      BODY       ***************************************************** -->
     
-<body background="">
+<body background="./img/background5.jpeg">
 
-<!-- <header class="mdc-top-app-bar mdc-top-app-bar--short">
+<header class="mdc-top-app-bar mdc-top-app-bar--short">
   <div class="mdc-top-app-bar__row" >
     <section class="mdc-top-app-bar__section mdc-top-app-bar__section--align-start" >
       <button class="material-icons mdc-top-app-bar__navigation-icon mdc-icon-button">menu</button>
@@ -45,9 +54,115 @@
       <button class="material-icons mdc-top-app-bar__action-item mdc-icon-button" aria-label="Bookmark this page">bookmark</button>
     </section>
   </div>
-</header>
-     -->
-<!-- <div class="mdc-card demo-card">
+</header> 
+    
+<aside class="mdc-drawer mdc-drawer--modal" data-mdc-auto-init="MDCDrawer">
+        <div class="mdc-drawer__header grad">
+            <h3 class="mdc-drawer__title">Menu</h3>
+        </div>
+        <div class="mdc-drawer__content grad">
+            <nav class="mdc-list">
+                <a id="home" data-screen="home" class="mdc-list-item mdc-list-item--activated" href="#" tabindex="0"
+                    aria-selected="true"><i class="material-icons mdc-list-item__graphic"
+                        aria-hidden="true">home</i>Home</a>
+                <a id="abt" data-screen="about" class="nav mdc-list-item mdc-list-item" href="" tabindex="1"
+                    aria-selected="true"><i class="fas fa-info-circle material-icons mdc-list-item__graphic"
+                        aria-hidden="true"></i>About</a>
+                <a id="contactus" data-screen="contact" class="mdc-list-item mdc-list-item" href="" tabindex="2"
+                    aria-selected="true"><i class="fas fa-envelope-open material-icons mdc-list-item__graphic"
+                        aria-hidden="true"></i>Contact Us</a>
+           </nav>
+        </div>
+</aside>
+ 
+
+    
+<div class= 'card'>
+    <ul id = 'list' class = 'list-group'>
+    </ul>
+</div>
+  
+<div class="content" id= "box">
+    <h2>Weather and Forecast</h2>
+        <h5>  Check Weather/Forecast by entering US City's Name, <br>
+            If checking Internationally, be sure to input the State Name and Country code. <br>       
+
+        </h5>
+</div>
+    
+    
+    
+    
+<div class= "content" id= "wikipage">
+<input type="text" placeholder="Search " id= "input" style= "background-color:transparent">
+<button id = wiBtn> SEARCH</button>
+</div>
+    
+<div class = "content" id="weatherpage">
+<input type="text" placeholder="City" id= "city" value = "chicago" style = "background-color:transparent">
+<input type="text" placeholder="State" id= "state" value = "illinois" style = "background-color:transparent">
+<input type="text" placeholder="Country" id= "country" value= "US" style = "background-color:transparent">
+<button id = wBtn> SEARCH</button>
+</div>
+ 
+<div class= "content" id="forecastpage">
+<input type="text" placeholder=" City. " id= "f_input" value= "Chicago" style= "background-color:transparent">
+<button id = fBtn> SEARCH</button>
+</div>
+    
+<script src="navbar.js"></script>
+<script src="wiki.js"></script>
+<script src="weather.js"></script>  
+ 
+<script>
+    
+function hideScreens() {
+    $(".content").hide();
+//     $(".wikipage").hide();
+//     $(".forecastpage").hide();
+//     $(".card").hide();
+}
+
+// $(".card").hide();
+$(document).ready(function() {
+    $("#fBtn").on("click", function() {
+        hideScreens();
+        $(".graph").show();                       // make a wiki card.
+    });
+    
+    $("#wBtn").on("click", function() {
+        hideScreens();
+        $(".card").show();
+    });
+    
+    $("#wiBtn").on("click", function() {
+        hideScreens();
+        $(".card").show();
+    });
+
+});
+    
+
+</script>    
+  
+<div id="curve_chart" class= "graph" ></div>    
+    
+    
+</body>
+</html>
+
+
+
+
+
+
+<!-- ******************************************** Demo Card (Just in case) ******************************************** -->
+
+
+
+
+
+<!--  <div class="mdc-card demo-card">
   <div class="mdc-card__primary-action demo-card__primary-action" tabindex="0">
     <div class="demo-card__primary">
       <h2 class="demo-card__title mdc-typography mdc-typography--headline6">Our Changing Planet</h2>
@@ -69,59 +184,4 @@
       <button class="mdc-icon-button material-icons mdc-card__action mdc-card__action--icon--unbounded" title="More options" data-mdc-ripple-is-unbounded="true">more_vert</button>
     </div>
   </div>
-</div>     -->
-    
-    
-<div class= 'card'>
-    <ul id = 'list' class = 'list-group'>
-    </ul>
-</div>
-  
-<div class = content>
-
-<div class= "weatherpage">
-<input type="text" placeholder="Search " id= "input">
-<button id = btn> SEARCH</button>
-</div>
-    
-<div class = "wikipage">
-<input type="text" placeholder="City" id= "city" value = "chicago">
-<input type="text" placeholder="State" id= "state" value = "illinois">
-<input type="text" placeholder="Country" id= "country" value= "US">
-<button id = wBtn> SEARCH</button>
-</div>
-  
-</div>
-    
-<script src="wiki.js"></script>   
-<script src="weather.js"></script>  
-
-      
-<script>
-    
-function hideScreens() {
-    $(".content").hide();
-}
-
-// $(".card").hide();
-$(document).ready(function() {
-    $("#btn").on("click", function() {
-        hideScreens();
-        $(".card").show();                       // make a wiki card.
-    });
-    
-    $("#wBtn").on("click", function() {
-        hideScreens();
-        $(".card").show();
-    });
-    
-});
-    
-
-</script>    
-    
-    
-
-    
-</body>
-</html>
+</div>  -->
