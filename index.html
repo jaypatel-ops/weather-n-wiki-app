@@ -42,8 +42,9 @@
     
 <!-- ***************************************************      BODY       ***************************************************** -->
     
-<body background="./img/background5.jpeg">
-
+<body background="./img/background5.jpeg">  
+    
+    
 <header class="mdc-top-app-bar mdc-top-app-bar--short">
   <div class="mdc-top-app-bar__row" >
     <section class="mdc-top-app-bar__section mdc-top-app-bar__section--align-start" >
@@ -74,53 +75,55 @@
            </nav>
         </div>
 </aside>
- 
-
-    
-<div class= 'card'>
-    <ul id = 'list' class = 'list-group'>
-    </ul>
-</div>
   
+    
 <div class="content" id= "box">
     <h2>Weather and Forecast</h2>
         <h5>  Check Weather/Forecast by entering US City's Name, <br>
-            If checking Internationally, be sure to input the State Name and Country code. <br>       
-
+            If checking Internationally, be sure to input the Country code and (if needed) State Code <br> <br>
+            Far Down Below is a Direct Wikipedia Search Area<br>
+            
         </h5>
 </div>
     
     
-    
-    
 <div class= "content" id= "wikipage">
-<input type="text" placeholder="Search " id= "input" style= "background-color:transparent">
+<input type="text" placeholder=" Wikipedia Search " id= "input" style= "background-color:transparent">
 <button id = wiBtn> SEARCH</button>
 </div>
     
 <div class = "content" id="weatherpage">
-<input type="text" placeholder="City" id= "city" value = "chicago" style = "background-color:transparent">
-<input type="text" placeholder="State" id= "state" value = "illinois" style = "background-color:transparent">
-<input type="text" placeholder="Country" id= "country" value= "US" style = "background-color:transparent">
-<button id = wBtn> SEARCH</button>
+<input type="text" placeholder="City Name" id= "city" style = "background-color:transparent">
+<input type="text" placeholder="State" id= "state"  style = "background-color:transparent">
+<input type="text" placeholder="Country" id= "country"  style = "background-color:transparent">
+<button id = "wBtn"> SEARCH</button>
+<button id = "geo"> geo</button>
 </div>
  
 <div class= "content" id="forecastpage">
-<input type="text" placeholder=" City. " id= "f_input" value= "Chicago" style= "background-color:transparent">
-<button id = fBtn> SEARCH</button>
+<input type="text" placeholder="City Name" id= "f_input" value= "Chicago" style= "background-color:transparent">
+<button id = "fBtn"> SEARCH</button>
 </div>
+    
+    
+<div class= 'card'>
+    <ul id = 'list' class = 'list-group'>
+    </ul>
+</div>    
+    
     
 <script src="navbar.js"></script>
 <script src="wiki.js"></script>
 <script src="weather.js"></script>  
  
 <script>
+  
     
+    
+$("#list").hide();
+$(".graph").hide();
 function hideScreens() {
     $(".content").hide();
-//     $(".wikipage").hide();
-//     $(".forecastpage").hide();
-//     $(".card").hide();
 }
 
 // $(".card").hide();
@@ -132,14 +135,13 @@ $(document).ready(function() {
     
     $("#wBtn").on("click", function() {
         hideScreens();
-        $(".card").show();
+        $("#list").show();
     });
     
     $("#wiBtn").on("click", function() {
         hideScreens();
-        $(".card").show();
+        $("#list").show();
     });
-
 });
     
 
