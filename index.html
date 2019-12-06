@@ -81,8 +81,9 @@
     <h2>Weather and Forecast</h2>
         <h5>  Check Weather/Forecast by entering US City's Name, <br>
             If checking Internationally, be sure to input the Country code and (if needed) State Code <br> <br>
-            Far Down Below is a Direct Wikipedia Search Area<br>
+            Far Down Below is a Direct Wikipedia Search Area<br><br>
             
+           Click USE LOCATION buttion to use your current location for weather. 
         </h5>
 </div>
     
@@ -97,8 +98,14 @@
 <input type="text" placeholder="State" id= "state"  style = "background-color:transparent">
 <input type="text" placeholder="Country" id= "country"  style = "background-color:transparent">
 <button id = "wBtn"> SEARCH</button>
-<button id = "geo"> geo</button>
+
 </div>
+    
+<div class= "content" id = "geolocation">
+    
+<button id = "geo"> Use Location</button>
+    
+</div>   
  
 <div class= "content" id="forecastpage">
 <input type="text" placeholder="City Name" id= "f_input" value= "Chicago" style= "background-color:transparent">
@@ -142,6 +149,15 @@ $(document).ready(function() {
         hideScreens();
         $("#list").show();
     });
+    
+    $("#geo").on("click", function() {
+        hideScreens();
+        $("#list").show();
+    });
+
+    
+    
+    
 });
     
 

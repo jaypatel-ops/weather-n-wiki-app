@@ -18,6 +18,8 @@ $('input[type="text"]').each(function(){
 
 
 
+//   THE WEATHER SEARCH (including the geolocation) 
+
 $(document).ready( function(){
     $("#wBtn").on("click", function(){
    
@@ -87,35 +89,53 @@ $(document).ready( function(){
 
 });
 
-// console.log("sup")
-// $(document).ready( function(){
-//     $("#geo").on("click", function(){
+
+
+// THE LOCATION BUTTON
+
+$(document).ready( function(){
+    $("#geo").on("click", function(){
         
-        
-//     if ("geolocation" in navigator) {
-//          console.log("available");
-//          navigator.geolocation.getCurrentPosition( position => {            
+        if ("geolocation" in navigator) {
+          console.log("available");
+          navigator.geolocation.getCurrentPosition( position => {            
          
-//          mylong= position.coords.longitude;
-//          mylat = position.coords.latitude;
-//           console.log(mylat, mylong);
+          mylong= position.coords.longitude;
+          mylat = position.coords.latitude;
+          console.log(mylat, mylong);
 
-//          $.get(weather_endpoint + "&lat="+ mylat + "&lon=" + mylong, function(response){  
-             
-             
-//             console.log(response);
-        
-//         });
+             $.get(weather_endpoint + "&lat="+ mylat + "&lon=" + mylong, function(response){  
+              $.each(response, function(i,v){
+                 if(v != 1){
+                     
+                  $.get(w_endpoint + v[0].city_name , function(response){
+                         var data= "<div class= 'card'>" + v[0].city_name + ", " + v[0].state_code + "<br>" +
+                 "~ "+v[0].weather.description +" ~"+ "<br>" + "Current Tempertature: " + v[0].temp+ " °C"+ "<br>" + "Wind Speed: " + v[0].wind_spd + "<br>" +'<a href="'+response[3][1]+'">Discover More about City</a>' + "<br>" + "</li>" + "<br>" + "</div>" ;
+            console.log(response[3][1]);
+                    $("#list").append(data);
+//                     $("#list").append(response[3][1]);
+     
+              });  
+                     
+                     
+                     console.log(v[0].city_name);
+                 
+                 
+                 
+                 };
+            });
     
-//     });
-//         }
-//     else {
-//          console.log("not available");
-//     }
+            });
+            });
+           }
+        
+        
+            else {
+                 console.log("not available");
+            }
 
         
         
         
-        
-//     });        
-// });
+    });        
+});

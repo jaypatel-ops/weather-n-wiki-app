@@ -41,6 +41,16 @@
         color:black;
     }  
 
+    #geo{
+        position:absolute;
+        left:20%;
+        top:55%;
+        background-color:transparent;
+        color:black;
+    
+    
+    }
+
       #curve_chart {
 /*           margin: 10px; */
           width: 100% ;
@@ -53,9 +63,9 @@
         position:absolute;
     /*         margin:5%; */
         background: rgba(0, 0, 0, 0.2);
-        height: 20%;
+        height: 23%;
         width: 100% ;
-        top: 10%;
+        top: 7%;
         left: auto%;
         color: #383535;
         text-align: center;
