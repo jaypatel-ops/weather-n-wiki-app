@@ -51,7 +51,7 @@
     
     }
 
-  #curve_chart {
+      #curve_chart {
       position:absolute;
       top:30%;
       width: 100%;
@@ -62,7 +62,7 @@
     #box {
         position:absolute;
         background: rgba(0, 0, 0, 0.2);
-        height: 23%;
+        height: 25%;
         width: 100% ;
         top: 7%;
         left: auto%;

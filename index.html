@@ -90,13 +90,7 @@
             
            Click USE LOCATION buttion to use your current location for weather. 
         </h5>
-</div>
-    
- <div id= "forecastbox">
-     <h4> Weather Forecast for Next 6 Days. </h4>
-         <p> The temperature is displyed ºC </p>    
-</div>
-    
+</div>   
     
 <div  id= "wikipage">
 <input type="text" placeholder=" Wikipedia Search " id= "input" style= "background-color:transparent">
@@ -110,24 +104,29 @@
 <button id = "wBtn"> SEARCH</button>
 </div>
     
-<div  id = "geolocation">
-<button id = "geo"> Use Location</button> 
-</div>   
- 
 <div id="forecastpage">
 <input type="text" placeholder="City Name" id= "f_input" value= "Chicago" style= "background-color:transparent">
 <button id = "fBtn"> SEARCH</button>
 </div>
     
-    
+<div  id = "geolocation">
+<button id = "geo"> Use Location</button> 
+</div>       
+ 
+</div>
+ 
 <div class= 'card'>
     <ul id = 'list' class = 'list-group'>
     </ul>
 </div>    
+        
     
-    
- 
+ <div id= "forecastbox">
+ <h4> Weather Forecast for Next 6 Days. </h4>
+     <p> The temperature is displyed ºC </p>    
 </div>
+
+    
 <script>
   
     
@@ -163,6 +162,7 @@ function hideHome() {
 function hideScreens() {
     $("#list").hide();
     $(".graph").hide();
+    
 }
 
 
@@ -198,6 +198,7 @@ $(document).ready(function() {
         hideScreens();
         hideScreens();
         $(".content").show();
+       $("#forecastbox").hide();
     });
     
     $("#home").on("click", function() {

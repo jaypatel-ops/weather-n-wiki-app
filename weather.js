@@ -105,7 +105,7 @@ $(document).ready( function(){
           $("#list").empty();
         
         if ("geolocation" in navigator) {
-          console.log("available");
+          console.log("geolocation available");
           navigator.geolocation.getCurrentPosition( position => {            
          
           mylong= position.coords.longitude;
