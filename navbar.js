@@ -13,8 +13,15 @@ let navs = document.getElementsByClassName("mdc-list-item");
 for (let i = 0; i < navs.length; i++) {
     navs[i].addEventListener("click", function () {
         drawer.open = false;
-        console.log("yup yup");
+        console.log("navbar clicked");
     })
 };
 
 
+//etting navbar click actions.
+
+// $(document).ready(function() {
+//     $("#home").on("click", function() {
+//         $(.content).show();
+//     });
+// });

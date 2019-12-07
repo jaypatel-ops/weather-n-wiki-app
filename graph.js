@@ -26,9 +26,8 @@ $("#fBtn").on("click", function(){
           
      ])
         
-
         var options = {
-          title: 'Weather Forecast',
+          title: response.city_name,
           curveType: 'function',
           legend: { position: 'left' }
         };

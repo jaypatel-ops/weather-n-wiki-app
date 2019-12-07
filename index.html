@@ -5,7 +5,7 @@
 <!--     <link rel="shortcut icon" type="image/ico" href="https://www.apple.com/favicon.ico"> -->
     <meta charset="utf-8">
    <meta http-equiv="Content-Security-Policy" content="upgrade-insecure-requests"> 
-<!--     <link rel="shortcut icon" href="favicon.ico" type="image/x-icon"> -->
+    <link rel="shortcut icon" href="./img/weather.ico" type="image/x-icon">
     
     
     <title>Big Project</title>
@@ -32,6 +32,9 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
     
+<!-- Include Dexie -->
+<script src="https://unpkg.com/dexie@latest/dist/dexie.js"></script>
+    
 <!-- for graph -->
     
 <script type="text/javascript" src="https://www.gstatic.com/charts/loader.js"></script>
@@ -49,65 +52,69 @@
   <div class="mdc-top-app-bar__row" >
     <section class="mdc-top-app-bar__section mdc-top-app-bar__section--align-start" >
       <button class="material-icons mdc-top-app-bar__navigation-icon mdc-icon-button">menu</button>
-      <span class="mdc-top-app-bar__title">Weather & Wiki</span>
+     <div id="appTitle" class="mdc-top-app-bar__title"> Weather n Wiki</div>
     </section>
     <section class="mdc-top-app-bar__section mdc-top-app-bar__section--align-end"  role="toolbar">
       <button class="material-icons mdc-top-app-bar__action-item mdc-icon-button" aria-label="Bookmark this page">bookmark</button>
     </section>
   </div>
 </header> 
-    
+
+<div class= "content">  
 <aside class="mdc-drawer mdc-drawer--modal" data-mdc-auto-init="MDCDrawer">
         <div class="mdc-drawer__header grad">
             <h3 class="mdc-drawer__title">Menu</h3>
         </div>
         <div class="mdc-drawer__content grad">
             <nav class="mdc-list">
-                <a id="home" data-screen="home" class="mdc-list-item mdc-list-item--activated" href="#" tabindex="0"
+                <a id="home" data-screen="home" class="mdc-list-item mdc-list-item" href="" tabindex="0"
                     aria-selected="true"><i class="material-icons mdc-list-item__graphic"
                         aria-hidden="true">home</i>Home</a>
-                <a id="abt" data-screen="about" class="nav mdc-list-item mdc-list-item" href="" tabindex="1"
-                    aria-selected="true"><i class="fas fa-info-circle material-icons mdc-list-item__graphic"
-                        aria-hidden="true"></i>About</a>
-                <a id="contactus" data-screen="contact" class="mdc-list-item mdc-list-item" href="" tabindex="2"
+                <a id="abt" data-screen="contact" class="mdc-list-item mdc-list-item" href="" tabindex="2"
                     aria-selected="true"><i class="fas fa-envelope-open material-icons mdc-list-item__graphic"
-                        aria-hidden="true"></i>Contact Us</a>
+                        aria-hidden="true"></i>About</a>
+                <a id="search" data-screen="about" class="nav mdc-list-item mdc-list-item" href="" tabindex="1"
+                    aria-selected="true"><i class="fas fa-info-circle material-icons mdc-list-item__graphic"
+                        aria-hidden="true"></i>Forecast Near me</a>
+
            </nav>
         </div>
 </aside>
   
-    
-<div class="content" id= "box">
+
+<div  id= "box">
     <h2>Weather and Forecast</h2>
         <h5>  Check Weather/Forecast by entering US City's Name, <br>
             If checking Internationally, be sure to input the Country code and (if needed) State Code <br> <br>
-            Far Down Below is a Direct Wikipedia Search Area<br><br>
+            Far Down Below is a Direct Wikipedia Search. <br><br>
             
            Click USE LOCATION buttion to use your current location for weather. 
         </h5>
 </div>
     
+ <div id= "forecastbox">
+     <h4> Weather Forecast for Next 6 Days. </h4>
+         <p> The temperature is displyed ºC </p>    
+</div>
     
-<div class= "content" id= "wikipage">
+    
+<div  id= "wikipage">
 <input type="text" placeholder=" Wikipedia Search " id= "input" style= "background-color:transparent">
 <button id = wiBtn> SEARCH</button>
 </div>
     
-<div class = "content" id="weatherpage">
+<div  id="weatherpage">
 <input type="text" placeholder="City Name" id= "city" style = "background-color:transparent">
 <input type="text" placeholder="State" id= "state"  style = "background-color:transparent">
 <input type="text" placeholder="Country" id= "country"  style = "background-color:transparent">
 <button id = "wBtn"> SEARCH</button>
-
 </div>
     
-<div class= "content" id = "geolocation">
-    
-<button id = "geo"> Use Location</button>
-    
+<div  id = "geolocation">
+<button id = "geo"> Use Location</button> 
 </div>   
  
-<div class= "content" id="forecastpage">
+<div id="forecastpage">
 <input type="text" placeholder="City Name" id= "f_input" value= "Chicago" style= "background-color:transparent">
 <button id = "fBtn"> SEARCH</button>
 </div>
@@ -119,49 +126,101 @@
 </div>    
     
     
-<script src="navbar.js"></script>
-<script src="wiki.js"></script>
-<script src="weather.js"></script>  
  
+</div>
 <script>
   
+    
+// window.mdc.autoInit();
+// const drawer1 = document.querySelector('.mdc-drawer').MDCDrawer;
+
+// // open drawer on nav icon
+// document.getElementsByClassName("mdc-top-app-bar__navigation-icon")[0].addEventListener("click", function () {
+//     drawer1.open = true;
+// });
+
+// close drawer on selection
+// let navs1 = document.getElementsByClassName("mdc-list-item");
+
+// for (let i = 0; i < navs1.length; i++) {
+//     navs[i].addEventListener("click", function () {
+//         drawer1.open = false;
+//     })
+// };
+    
+ 
     
     
 $("#list").hide();
 $(".graph").hide();
-function hideScreens() {
+$("#forecastbox").hide();
+    
+    
+function hideHome() {
     $(".content").hide();
 }
 
-// $(".card").hide();
+function hideScreens() {
+    $("#list").hide();
+    $(".graph").hide();
+}
+
+
+// Buttons set to their tasks. 
 $(document).ready(function() {
+    
     $("#fBtn").on("click", function() {
+        hideHome();
         hideScreens();
+        $("#forecastbox").show();
         $(".graph").show();                       // make a wiki card.
     });
     
     $("#wBtn").on("click", function() {
+        hideHome();
         hideScreens();
         $("#list").show();
     });
     
     $("#wiBtn").on("click", function() {
+        hideHome();
         hideScreens();
         $("#list").show();
     });
     
     $("#geo").on("click", function() {
+        hideHome();
         hideScreens();
         $("#list").show();
     });
-
     
+    $("#appTitle").on("click", function() {
+        hideScreens();
+        hideScreens();
+        $(".content").show();
+    });
     
+    $("#home").on("click", function() {
+        hideScreens();
+        hideHome();
+        $(".content").show();
+    });
+    
+   
+    $("#abt").on("click", function() {
+//         hideScreens();
+//         hideHome();
+        $(".content").load("about.html");
+        
+        return false;
+    });
     
 });
     
-
-</script>    
+</script> 
+    <script src="navbar.js"></script>
+<script src="wiki.js"></script>
+<script src="weather.js"></script> 
   
 <div id="curve_chart" class= "graph" ></div>    
     
