@@ -16,12 +16,3 @@ for (let i = 0; i < navs.length; i++) {
         console.log("navbar clicked");
     })
 };
-
-
-//etting navbar click actions.
-
-// $(document).ready(function() {
-//     $("#home").on("click", function() {
-//         $(.content).show();
-//     });
-// });

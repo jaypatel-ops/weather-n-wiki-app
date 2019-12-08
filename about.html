@@ -14,6 +14,27 @@
     
 </style>
 
+<div id = "drawer">
+<aside class="mdc-drawer mdc-drawer--modal" data-mdc-auto-init="MDCDrawer">
+        <div class="mdc-drawer__header grad">
+            <h3 class="mdc-drawer__title">Menu</h3>
+        </div>
+        <div class="mdc-drawer__content grad">
+            <nav class="mdc-list">
+                <a id="home" data-screen="home" class="mdc-list-item mdc-list-item" href="" tabindex="0"
+                    aria-selected="true"><i class="material-icons mdc-list-item__graphic"
+                        aria-hidden="true">home</i>Home</a>
+                <a id="abt" data-screen="contact" class="mdc-list-item mdc-list-item" href="" tabindex="2"
+                    aria-selected="true"><i class="fas fa-envelope-open material-icons mdc-list-item__graphic"
+                        aria-hidden="true"></i>About</a>
+<!--                 <a id="search" data-screen="about" class="nav mdc-list-item mdc-list-item" href="" tabindex="1"
+                    aria-selected="true"><i class="fas fa-info-circle material-icons mdc-list-item__graphic"
+                        aria-hidden="true"></i>Contact Us</a> -->
+
+           </nav>
+        </div>
+</aside>
+</div>    
     
 <div class = "box">
 <h1> JAY PATEL </h1>
@@ -34,3 +55,14 @@
     developer.indus@gmail.com
 </p>
 </div>
+    
+    
+<script>    
+$("#appTitle").on("click", function() {
+    console.log("click click")    ;
+    hideScreens();
+    $(".content").load("index.html");        
+//         return false;
+    });
+    
+</script>
