@@ -9,7 +9,7 @@ var mylong;
 // Defining the DB.
  const db = new Dexie("history");
           db.version(1).stores({
-              searches: 'id++, cityn ,country,latitude,longitude'
+              searches: 'id++, cityname,latitude,longitude'
           });
 
 db.open().catch((error) => {
@@ -28,75 +28,153 @@ $('input[type="text"]').each(function(){
 
 
 
+
+//   db.searches.get(1, function (lastKnowLocation) {
+//                 mylat = lastKnowLocation.latitude;
+//                 mylong = lastKnowLocation.longitude;
+
+
+//         if(mylat == undefined || mylong == undefined){
+//            db.searches.get(1, function (lastKnowLocation) {
+//                 mylat = lastKnowLocation.latitude;
+//                 mylong = lastKnowLocation.longitude;
+//             });
+
+//         }
+//         console.log(mylat);
+
+
+//   });
+
+
+// function getCoords() {
+//   return new Promise((resolve, reject) =>
+//     navigator.permissions ?
+
+//       // Permission API is implemented
+//       navigator.permissions.query({
+//         name: 'geolocation'
+//       }).then(permission =>
+//         // is geolocation granted?
+//         permission.state === "granted"
+//           ? navigator.geolocation.getCurrentPosition(pos => resolve(pos.coords)) 
+//           : resolve(null)
+//       ) :
+
+//     // Permission API was not implemented
+//     reject(new Error("Permission API is not supported"))
+//   )
+// }
+
+// getCoords().then(coords => console.log(coords))
+
+
 //   THE WEATHER SEARCH (including the geolocation) 
+$(document).ready(function() {
+    $("#wBtn").on("click", function() {
 
-$(document).ready( function(){
-   $("#wBtn").on("click", function() {
-       $("#list").empty();
-   
-    if( $("#city").val() == 0 ){
-       if ("geolocation" in navigator) {
-          console.log("geolocation available");
-           
-           
-          navigator.geolocation.getCurrentPosition( position => {            
-         
-          mylong= position.coords.longitude;
-          mylat = position.coords.latitude;
-          console.log(typeof(mylat));
-            db.searches.put({latitude:mylat, longitude:mylong});
-              
-              
-             $.get(weather_endpoint + "&lat="+ mylat + "&lon=" + mylong, function(response){  
-              $.each(response, function(i,v){
-                 if(v != 1){
-                     
-                  $.get(w_endpoint + v[0].city_name , function(response){
-                         var data= "<div class= 'card'>" + v[0].city_name + ", " + v[0].state_code + "<br>" +
-                 "~ "+v[0].weather.description +" ~"+ "<br>" + "Current Tempertature: " + v[0].temp+ " °C"+ "<br>" + "Wind Speed: " + v[0].wind_spd + "<br>" +'<a href="'+response[3][1]+'">Discover More about City</a>' + "<br>" + "</li>" + "<br>" + "</div>" ;
-            console.log(response[3][1]);
-                    
-                    $("#list").append(data);
-                });  
-                };
-                });
-                });
-                });
-                }
-       
-            else {
-                 console.log("geolocation unavailable");
-            }
-       
-       }
-    
-        $.get(weather_endpoint + "&country="+ $('#country').val() + "&state=" +$('#state').val() + "&city=" +$('#city').val(),          function(response){   
-         $.each(response, function(i,v) {
-          if(v != 1){
-        
-        $.get(w_endpoint + v[0].city_name , function(response){
-             var data= "<div class= 'card'>" + v[0].city_name + ", " + v[0].state_code + "<br>" +
-                 "~ "+v[0].weather.description +" ~"+ "<br>" + "Current Tempertature: " + v[0].temp+ " °C"+ "<br>" + "Wind Speed: " + v[0].wind_spd + "<br>" + '<a href="'+response[3][1]+'"> Discover More about City </a>' + "<br>" + "</li>" + "<br>" + "</div>" ;
-            console.log(response[3][1]);
-           
-            db.searches.put({cityn: v[0].city_name });
-                    $("#list").append(data);
+        $("#list").empty();
+
+        if ($("#city").val() == 0) {
+            if ("geolocation" in navigator) {
+                console.log("geolocation available");
+
+
+ 
+                
+                navigator.geolocation.getCurrentPosition(position => {
+
+                    mylong = position.coords.longitude;
+                    mylat = position.coords.latitude;
+                    console.log(mylat);
+                    db.searches.put({ latitude: mylat, longitude: mylong });
+                });   
             
-            console.log(db.searches.cityn);
-//                     $("#list").append(response[3][1]);
-     
-              });  
-          
-            }
-          
-         });
-      });
+                   if(mylat == undefined || mylong == undefined){
+                    db.searches.get(1, function (lastKnowLocation) {
+                    mylat = lastKnowLocation.latitude;
+                    mylong = lastKnowLocation.longitude;
+                         console.log(mylat, mylong);
+                                     $.get(weather_endpoint + "&lat=" + mylat + "&lon=" + mylong, function(response) {
+                    $.each(response, function(i, v) {
+                        if (v != 1) {
 
-});
+                            $.get(w_endpoint + v[0].city_name, function(response) {
+                                var data = "<div class= 'card'>" + v[0].city_name + ", " + v[0].state_code + "<br>" +
+                                    "~ " + v[0].weather.description + " ~" + "<br>" + "Current Tempertature: " + v[0].temp + " °C" + "<br>" + "Wind Speed: " + v[0].wind_spd + "<br>" + '<a href="' + response[3][1] + '">Discover More about City</a>' + "<br>" + "</li>" + "<br>" + "</div>";
+                                console.log(response[3][1]);
+
+                                $("#list").append(data);
+                            });
+                        };
+                    });
+                });   
+                        
+                        
+                        
+                        
+                        
+                    });
+
+                    }
+                   
+                 
+
+                $.get(weather_endpoint + "&lat=" + mylat + "&lon=" + mylong, function(response) {
+                    $.each(response, function(i, v) {
+                        if (v != 1) {
+
+                            $.get(w_endpoint + v[0].city_name, function(response) {
+                                var data = "<div class= 'card'>" + v[0].city_name + ", " + v[0].state_code + "<br>" +
+                                    "~ " + v[0].weather.description + " ~" + "<br>" + "Current Tempertature: " + v[0].temp + " °C" + "<br>" + "Wind Speed: " + v[0].wind_spd + "<br>" + '<a href="' + response[3][1] + '">Discover More about City</a>' + "<br>" + "</li>" + "<br>" + "</div>";
+                                console.log(response[3][1]);
+
+                                $("#list").append(data);
+                            });
+                        };
+                    });
+                });
+         
+        }
+
+        else {
+            console.log("geolocation unavailable")
+            alert("Location unavailable, try searching with City Name");
+            console.log(longitude, latitude);
+
+
+        }
     
+        }
+
+        $.get(weather_endpoint + "&country=" + $('#country').val() + "&state=" + $('#state').val() + "&city=" + $('#city').val(), function(response) {
+            $.each(response, function(i, v) {
+                if (v != 1) {
+
+                    $.get(w_endpoint + v[0].city_name, function(response) {
+                        var data = "<div class= 'card'>" + v[0].city_name + ", " + v[0].state_code + "<br>" +
+                            "~ " + v[0].weather.description + " ~" + "<br>" + "Current Tempertature: " + v[0].temp + " °C" + "<br>" + "Wind Speed: " + v[0].wind_spd + "<br>" + '<a href="' + response[3][1] + '"> Discover More about City </a>' + "<br>" + "</li>" + "<br>" + "</div>";
+                        console.log(response[3][1]);
+
+                        db.searches.put({ cityname: v[0].city_name });
+                        $("#list").append(data);
+
+                        console.log(db.searches.cityname);
+                        //                     $("#list").append(response[3][1]);
+
+                    });
+
+                }
+
+            });
+        });
+
+    });
 });
 
 
+
+/***************************************************************************************************************************** */ 
 
 // THE LOCATION BUTTON
 
@@ -138,6 +216,7 @@ $(document).ready( function(){
     
             });
             });
+            
            }
         
         
@@ -145,8 +224,5 @@ $(document).ready( function(){
                  console.log("not available");
             }
 
-        
-        
-        
     });        
-});
+})

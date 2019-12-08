@@ -4,7 +4,13 @@
     
 <!--     <link rel="shortcut icon" type="image/ico" href="https://www.apple.com/favicon.ico"> -->
     <meta charset="utf-8">
-   <meta http-equiv="Content-Security-Policy" content="upgrade-insecure-requests"> 
+   <meta http-equiv="Content-Security-Policy" content="upgrade-insecure-requests">
+    <meta name="theme-color" content="#8c1200">
+    <link rel="apple-touch-icon" href="/weather 512.png">
+    
+    
+    
+    
     <link rel="shortcut icon" href="./img/weather.ico" type="image/x-icon">
     
     
@@ -40,12 +46,13 @@
 <script type="text/javascript" src="https://www.gstatic.com/charts/loader.js"></script>
 <script src = "graph.js"> </script>
     
-
+<link rel="manifest" href="manifest.json">
+    
 </head>
     
 <!-- ***************************************************      BODY       ***************************************************** -->
     
-<body background="./img/background5.jpeg">  
+<body background="./img/background.jpeg">  
     
     
 <header class="mdc-top-app-bar mdc-top-app-bar--short">
@@ -60,7 +67,8 @@
   </div>
 </header> 
 
-<div class= "content">  
+<div class= "content">
+<div id = "drawer">
 <aside class="mdc-drawer mdc-drawer--modal" data-mdc-auto-init="MDCDrawer">
         <div class="mdc-drawer__header grad">
             <h3 class="mdc-drawer__title">Menu</h3>
@@ -73,14 +81,15 @@
                 <a id="abt" data-screen="contact" class="mdc-list-item mdc-list-item" href="" tabindex="2"
                     aria-selected="true"><i class="fas fa-envelope-open material-icons mdc-list-item__graphic"
                         aria-hidden="true"></i>About</a>
-                <a id="search" data-screen="about" class="nav mdc-list-item mdc-list-item" href="" tabindex="1"
+<!--                 <a id="search" data-screen="about" class="nav mdc-list-item mdc-list-item" href="" tabindex="1"
                     aria-selected="true"><i class="fas fa-info-circle material-icons mdc-list-item__graphic"
-                        aria-hidden="true"></i>Forecast Near me</a>
+                        aria-hidden="true"></i>Contact Us</a> -->
 
            </nav>
         </div>
 </aside>
-  
+</div>  
+
 
 <div  id= "box">
     <h2>Weather and Forecast</h2>
@@ -209,23 +218,29 @@ $(document).ready(function() {
     
    
     $("#abt").on("click", function() {
-//         hideScreens();
-//         hideHome();
-        $(".content").load("about.html");
-        
+
+        $(".content").load("about.html");        
         return false;
+    });
+    
+    $("material-icons mdc-top-app-bar__navigation-icon mdc-icon-button").on(click, function(){
+       $("#drawer").show();
+        
     });
     
 });
     
-</script> 
-    <script src="navbar.js"></script>
-<script src="wiki.js"></script>
-<script src="weather.js"></script> 
-  
+</script>
+    
 <div id="curve_chart" class= "graph" ></div>    
     
     
+<script src="navbar.js"></script>
+<script src="wiki.js"></script>
+<script src="weather.js"></script> 
+<script src="app.js"></script>
+  
+
 </body>
 </html>
 
